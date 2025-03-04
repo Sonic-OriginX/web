@@ -25,10 +25,10 @@ import { useStaking } from "@/hooks/query/useStaking";
 import { Image } from "@heroui/image";
 import { useStakedsHistory } from "@/hooks/query/graphql/useStakedsHistory";
 import { useWithdrawsHistory } from "@/hooks/query/graphql/useWithdrawsHistory";
-import { SwapsResponse } from "@/types/graphql/swaps";
-import { TransfersResponse } from "@/types/graphql/transfers";
-import { StakedsResponse } from "@/types/graphql/stakeds";
-import { WithdrawsResponse } from "@/types/graphql/withdraws";
+import { Swaps } from "@/types/graphql/swaps";
+import { Transfers } from "@/types/graphql/transfers";
+import { Stakeds } from "@/types/graphql/stakeds";
+import { Withdraws } from "@/types/graphql/withdraws";
 import { urlSepoliaBasescan } from "@/lib/utils";
 import { Link } from "@heroui/link";
 
@@ -40,16 +40,16 @@ export default function HistoryCard() {
 
   const [selectedType, setSelectedType] = useState<HistoryType>("transfers");
   const { dTransfers, tLoading, tRefetch } = useTransfersHistory({
-    address: address as `0x${string}`,
+    address: address?.toLowerCase() as `0x${string}`,
   });
   const { dSwaps, sLoading, sRefetch } = useSwapsHistory({
-    address: address as `0x${string}`,
+    address: address?.toLowerCase() as `0x${string}`,
   });
   const { dStakeds, sLoading: sLoadingStaked, sRefetch: sRefetchStaked } = useStakedsHistory({
-    address: address as `0x${string}`,
+    address: address?.toLowerCase() as `0x${string}`,
   });
   const { dWithdraws, sLoading: sLoadingWithdraws, sRefetch: sRefetchWithdraw } = useWithdrawsHistory({
-    address: address as `0x${string}`,
+    address: address?.toLowerCase() as `0x${string}`,
   });
 
   const [page, setPage] = useState(1);
@@ -64,7 +64,7 @@ export default function HistoryCard() {
   };
 
   const items = useMemo(() => {
-    let data: (TransfersResponse | SwapsResponse | StakedsResponse | WithdrawsResponse)[] = [];
+    let data: (Transfers | Swaps | Stakeds | Withdraws)[] = [];
     if (selectedType === "transfers") data = dTransfers;
     if (selectedType === "swaps") data = dSwaps;
     if (selectedType === "stakeds") data = dStakeds;
@@ -133,9 +133,9 @@ export default function HistoryCard() {
     );
   };
 
-  const renderTableCell = (item: TransfersResponse | SwapsResponse | StakedsResponse | WithdrawsResponse, key: string) => {
+  const renderTableCell = (item: Transfers | Swaps | Stakeds | Withdraws, key: string) => {
     if (selectedType === "transfers") {
-      const transferItem = item as TransfersResponse;
+      const transferItem = item as Transfers;
       switch (key) {
         case "from":
           return truncateAddress(transferItem.from);
@@ -149,7 +149,7 @@ export default function HistoryCard() {
           return "";
       }
     } else if (selectedType === "swaps") {
-      const swapItem = item as SwapsResponse;
+      const swapItem = item as Swaps;
       switch (key) {
         case "user":
           return truncateAddress(swapItem.user);
@@ -165,7 +165,7 @@ export default function HistoryCard() {
           return "";
       }
     } else if (selectedType === "stakeds") {
-      const stakedItem = item as StakedsResponse;
+      const stakedItem = item as Stakeds;
       switch (key) {
         case "amount":
           return normalize(stakedItem.amount, DECIMALS_MOCK_TOKEN);
@@ -177,7 +177,7 @@ export default function HistoryCard() {
           return "";
       }
     } else if (selectedType === "withdraws") {
-      const withdrawItem = item as WithdrawsResponse;
+      const withdrawItem = item as Withdraws;
       switch (key) {
         case "amount":
           return normalize(withdrawItem.amount, DECIMALS_MOCK_TOKEN);
@@ -228,10 +228,10 @@ export default function HistoryCard() {
             variant="bordered"
             className="w-32"
           >
-            <SelectItem key="transfers" value="transfers">Transfers</SelectItem>
-            <SelectItem key="swaps" value="swaps">Swaps</SelectItem>
-            <SelectItem key="stakeds" value="takeds">Stakeds</SelectItem>
-            <SelectItem key="withdraws" value="withdraws">Withdraws</SelectItem>
+            <SelectItem key="transfers" data-value="transfers">Transfers</SelectItem>
+            <SelectItem key="swaps" data-value="swaps">Swaps</SelectItem>
+            <SelectItem key="stakeds" data-value="takeds">Stakeds</SelectItem>
+            <SelectItem key="withdraws" data-value="withdraws">Withdraws</SelectItem>
           </Select>
           <Button variant="bordered" onPress={handleRefetch} disabled={tLoading || sLoading}>
             {tLoading || sLoading || sLoadingStaked || sLoadingWithdraws ? (

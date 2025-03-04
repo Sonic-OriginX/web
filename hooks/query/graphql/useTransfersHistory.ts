@@ -16,8 +16,6 @@ export const useTransfersHistory = ({ address }: { address: HexAddress }) => {
     refetchInterval: 30000,
   })
 
-  console.log("address: ", address)
-
   const transfers = data?.transfers.items || []
 
   return {

@@ -42,11 +42,11 @@ export function FaucetGrid() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { mutation: mintMutation, txHash: resultMint } = useMint();
 
-  const uniToken = sData?.find((item) => item.nameToken === "UNI");
-  const daiToken = sData?.find((item) => item.nameToken === "DAI");
-  const wethToken = sData?.find((item) => item.nameToken === "WETH");
-  const usdcToken = sData?.find((item) => item.nameToken === "USDC");
-  const usdtToken = sData?.find((item) => item.nameToken === "USDT");
+  const uniToken = sData?.find((item) => item.nameToken.toLowerCase() === "s");
+  const daiToken = sData?.find((item) => item.nameToken.toLowerCase() === "os");
+  const wethToken = sData?.find((item) => item.nameToken.toLowerCase() === "ws");
+  const usdcToken = sData?.find((item) => item.nameToken.toLowerCase() === "usdce");
+  const usdtToken = sData?.find((item) => item.nameToken.toLowerCase() === "lbtc");
 
   const findToken =
     selectedCard?.id === 2 ? uniToken :

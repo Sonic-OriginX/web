@@ -1,6 +1,6 @@
 import { OPTIFinanceABI } from "@/lib/abis/OPTIFinanceABI";
 import { denormalize, valueToBigInt } from "@/lib/bignumber";
-import { ADDRESS_OPTIFINANCE } from "@/lib/constants";
+import { ADDRESS_ORIGINX } from "@/lib/constants";
 import { config } from "@/lib/wagmi";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
@@ -64,14 +64,14 @@ export const useSwap = () => {
           address: addressTokenIn,
           abi: erc20Abi,
           functionName: "approve",
-          args: [ADDRESS_OPTIFINANCE, valueToBigInt(dAmount + 10)],
+          args: [ADDRESS_ORIGINX, valueToBigInt(dAmount + 10)],
         });
 
         // const approveHash = await writeContract(config, {
         //   address: addressTokenIn,
         //   abi: erc20Abi,
         //   functionName: "approve",
-        //   args: [ADDRESS_OPTIFINANCE, valueToBigInt(dAmount + 10)],
+        //   args: [ADDRESS_ORIGINX, valueToBigInt(dAmount + 10)],
         // });
 
         // const approveReceipt = await waitForTransactionReceipt(config, {
@@ -95,7 +95,7 @@ export const useSwap = () => {
         );
 
         const swapHash = await writeContract(config, {
-          address: ADDRESS_OPTIFINANCE,
+          address: ADDRESS_ORIGINX,
           abi: OPTIFinanceABI,
           functionName: "swap",
           args: [addressTokenIn, addressTokenOut, valueToBigInt(dAmount)],

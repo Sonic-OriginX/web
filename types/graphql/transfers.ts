@@ -11,4 +11,12 @@ export const TransfersResponseSchema = z.object({
   )
 });
 
+export const TransfersSchema = z.object({
+  from: z.string(),
+  to: z.string(),
+  value: z.string(),
+  transactionHash: z.string(),
+});
+
 export type TransfersResponse = z.infer<typeof TransfersResponseSchema>;
+export type Transfers = z.infer<typeof TransfersSchema>;

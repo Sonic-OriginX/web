@@ -90,8 +90,6 @@ export const useGenerateAI = () => {
             })
           }
 
-          console.log("findStaking", findStaking);
-
           if (response.response[0]?.id_project) {
             try {
               const txHash = await writeContract(config, {

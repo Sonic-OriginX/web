@@ -10,4 +10,11 @@ export const WithdrawsResponseSchema = z.object({
   )
 });
 
+export const WithdrawsSchema = z.object({
+  amount: z.string(),
+  transactionHash: z.string(),
+  withdrawer: z.string(),
+});
+
 export type WithdrawsResponse = z.infer<typeof WithdrawsResponseSchema>;
+export type Withdraws = z.infer<typeof WithdrawsSchema>;

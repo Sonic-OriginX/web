@@ -10,4 +10,11 @@ export const StakedsResponseSchema = z.object({
   )
 });
 
+export const StakedsSchema = z.object({
+  amount: z.string(),
+  staker: z.string(),
+  transactionHash: z.string(),
+});
+
 export type StakedsResponse = z.infer<typeof StakedsResponseSchema>;
+export type Stakeds = z.infer<typeof StakedsSchema>;

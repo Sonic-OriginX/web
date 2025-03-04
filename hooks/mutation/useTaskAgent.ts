@@ -63,8 +63,6 @@ export const useTaskAgent = () => {
 
         setTxHash(txHash);
 
-        console.log(txHash)
-
         const result = await waitForTransactionReceipt(config, {
           hash: txHash,
         });

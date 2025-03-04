@@ -12,4 +12,13 @@ export const ProofResponseSchema = z.object({
   )
 });
 
+export const ProofSchema = z.object({
+  taskIndex: z.string(),
+  signature: z.string(),
+  task_stakingAddress: z.string(),
+  task_accountAddress: z.string(),
+  transactionHash: z.string(),
+});
+
 export type ProofResponse = z.infer<typeof ProofResponseSchema>;
+export type Proof = z.infer<typeof ProofSchema>;
