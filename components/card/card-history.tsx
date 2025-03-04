@@ -40,16 +40,16 @@ export default function HistoryCard() {
 
   const [selectedType, setSelectedType] = useState<HistoryType>("transfers");
   const { dTransfers, tLoading, tRefetch } = useTransfersHistory({
-    address: address?.toLowerCase() as `0x${string}`,
+    address: address as `0x${string}`,
   });
   const { dSwaps, sLoading, sRefetch } = useSwapsHistory({
-    address: address?.toLowerCase() as `0x${string}`,
+    address: address as `0x${string}`,
   });
   const { dStakeds, sLoading: sLoadingStaked, sRefetch: sRefetchStaked } = useStakedsHistory({
-    address: address?.toLowerCase() as `0x${string}`,
+    address: address as `0x${string}`,
   });
   const { dWithdraws, sLoading: sLoadingWithdraws, sRefetch: sRefetchWithdraw } = useWithdrawsHistory({
-    address: address?.toLowerCase() as `0x${string}`,
+    address: address as `0x${string}`,
   });
 
   const [page, setPage] = useState(1);

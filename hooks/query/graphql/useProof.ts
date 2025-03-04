@@ -4,22 +4,22 @@ import { useQuery } from "@tanstack/react-query"
 import request from "graphql-request"
 
 interface Proof {
-  optiTaskRespondeds: ProofResponse[]
+  originXTaskRespondeds: ProofResponse
 }
 
 export const useProofHistory = ({ address }: { address: HexAddress }) => {
   const { data, isLoading, refetch } = useQuery<Proof>({
-    queryKey: ["optiTaskRespondeds", address],
+    queryKey: ["originXTaskRespondeds", address],
     queryFn: async () => {
-      return await request(process.env.NEXT_PUBLIC_API_GRAPHQL_URL || "", queryProof((address.toString()).toLowerCase()));
+      return await request(process.env.NEXT_PUBLIC_API_GRAPHQL_URL || "", queryProof((address.toString())));
     },
     refetchInterval: 30000,
   })
 
-  const optiTaskRespondeds = data?.optiTaskRespondeds || []
+  const originXTaskRespondeds = data?.originXTaskRespondeds.items || []
 
   return {
-    dProof: optiTaskRespondeds,
+    dProof: originXTaskRespondeds,
     sLoading: isLoading,
     sRefetch: refetch,
   }

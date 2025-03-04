@@ -11,12 +11,12 @@ export const useAddressAI = () => {
       const response = await apiAgent.post("action/get-wallet", { user_address: address })
       return response
     },
-    retry: 3,
+    retry: 2,
     retryDelay: 1000,
-    refetchInterval: 5000,
+    refetchInterval: 10000,
     retryOnMount: false,
     refetchOnWindowFocus: false,
-    staleTime: 1000,
+    staleTime: 10000,
   })
 
   return {

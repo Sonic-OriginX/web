@@ -28,6 +28,7 @@ export const useCreateWalletAI = () => {
     },
     onSuccess: (data) => {
       setResult(data);
+      window.location.reload();
       setSteps([{ step: 1, status: "success" }]);
     },
     onError: (e: unknown) => {

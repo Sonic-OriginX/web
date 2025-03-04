@@ -4,19 +4,21 @@ import { useQuery } from "@tanstack/react-query"
 import request from "graphql-request"
 
 interface Transfers {
-  transfers: TransfersResponse[]
+  transfers: TransfersResponse
 }
 
 export const useTransfersHistory = ({ address }: { address: HexAddress }) => {
   const { data, isLoading, refetch } = useQuery<Transfers>({
     queryKey: ["transfers", address],
     queryFn: async () => {
-      return await request(process.env.NEXT_PUBLIC_API_GRAPHQL_URL || "", queryTransfers((address.toString()).toLowerCase()));
+      return await request(process.env.NEXT_PUBLIC_API_GRAPHQL_URL || "", queryTransfers((address.toString())));
     },
     refetchInterval: 30000,
   })
 
-  const transfers = data?.transfers || []
+  console.log("address: ", address)
+
+  const transfers = data?.transfers.items || []
 
   return {
     dTransfers: transfers,

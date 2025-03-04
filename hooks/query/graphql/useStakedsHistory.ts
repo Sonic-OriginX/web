@@ -4,19 +4,19 @@ import { useQuery } from "@tanstack/react-query"
 import request from "graphql-request"
 
 interface Stakeds {
-  stakeds: StakedsResponse[]
+  stakeds: StakedsResponse
 }
 
 export const useStakedsHistory = ({ address }: { address: HexAddress }) => {
   const { data, isLoading, refetch } = useQuery<Stakeds>({
     queryKey: ["stakeds", address],
     queryFn: async () => {
-      return await request(process.env.NEXT_PUBLIC_API_GRAPHQL_URL || "", queryStakeds((address.toString()).toLowerCase()));
+      return await request(process.env.NEXT_PUBLIC_API_GRAPHQL_URL || "", queryStakeds((address.toString())));
     },
     refetchInterval: 30000,
   })
 
-  const stakeds = data?.stakeds || []
+  const stakeds = data?.stakeds.items || []
 
   return {
     dStakeds: stakeds,
