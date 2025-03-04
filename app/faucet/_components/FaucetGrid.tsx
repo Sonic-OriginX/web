@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@heroui/button";
 import { Modal, ModalBody, ModalContent, ModalHeader } from "@heroui/modal";
 import { motion } from "framer-motion";
-import { useCallback, useState } from "react";
+import { JSX, useCallback, useState } from "react";
 import { cardsFaucet } from "./FaucetComponents";
 import { useStaking } from "@/hooks/query/useStaking";
 import { useMintAI } from "@/hooks/mutation/api/useMintAI";
