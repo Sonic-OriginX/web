@@ -15,11 +15,11 @@ export default function ModalListTokenAI({
 }) {
   const { sData } = useStaking();
 
-  const mockUSDC = sData?.find((pool) => pool.nameToken === 'USDC') ?? null;
-  const mockUSDT = sData?.find((pool) => pool.nameToken === 'USDT') ?? null;
-  const mockDAI = sData?.find((pool) => pool.nameToken === 'DAI') ?? null;
-  const mockWETH = sData?.find((pool) => pool.nameToken === 'WETH') ?? null;
-  const mockUNI = sData?.find((pool) => pool.nameToken === 'UNI') ?? null;
+  const mockUSDC = sData?.find((pool) => pool.nameToken.toLowerCase() === 'usdce') ?? null;
+  const mockUSDT = sData?.find((pool) => pool.nameToken.toLowerCase() === 's') ?? null;
+  const mockDAI = sData?.find((pool) => pool.nameToken.toLowerCase() === 'os') ?? null;
+  const mockWETH = sData?.find((pool) => pool.nameToken.toLowerCase() === 'ws') ?? null;
+  const mockUNI = sData?.find((pool) => pool.nameToken.toLowerCase() === 'lbtc') ?? null;
 
   const { bNormalized: bnUSDC } = useAccountBalanceAI({ token: mockUSDC?.addressToken as HexAddress, decimal: DECIMALS_MOCK_TOKEN });
   const { bNormalized: bnUSDT } = useAccountBalanceAI({ token: mockUSDT?.addressToken as HexAddress, decimal: DECIMALS_MOCK_TOKEN });
