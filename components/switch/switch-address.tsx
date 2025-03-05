@@ -14,7 +14,7 @@ const AddressSwitcher = ({ onAddressChange }: { onAddressChange: (address: HexAd
 
   const handleToggle = (checked: boolean) => {
     setIsAIWallet(checked);
-    onAddressChange(checked ? addressAI as HexAddress : address as HexAddress);
+    onAddressChange(checked ? address as HexAddress : addressAI as HexAddress);
   };
 
   return (

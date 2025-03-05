@@ -73,7 +73,7 @@ const TransferCard: React.FC<TransferCardProps> = () => {
       transferAmount <= currentBalance
     );
   };
-
+  
   const handleAddressChange = (newAddress: HexAddress) => {
     setSelectedAddress(newAddress);
     balanceRefetch()
