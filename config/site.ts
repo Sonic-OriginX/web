@@ -57,6 +57,6 @@ export const siteConfig = {
   ],
   links: {
     github: "https://github.com/Sonic-OriginX",
-    docs: "https://kbaji.gitbook.io/sonic-originx",
+    docs: "https://kbaji.gitbook.io/originx",
   },
 };
